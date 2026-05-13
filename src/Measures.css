@@ -159,15 +159,15 @@
   position: absolute;
 }
 
-/* The gray "target trend" reference line. The SVG is already a neutral
-   gray (#6A6C71 / #C1C5CD). Render lighter by default; darken on Target hover.
-   The colored main line (`.layer-main`) is untouched on hover. */
-.graph .layer-trend {
+/* The gray "target line" reference. The SVG is already a neutral gray
+   (#6A6C71). Render lighter by default; darken on Target hover. The colored
+   main line (`.layer-main`) is untouched on hover. */
+.graph .layer-target {
   opacity: 0.5;
   transition: opacity 140ms ease;
 }
 
-.graph:has(.target:hover) .layer-trend {
+.graph:has(.target:hover) .layer-target {
   opacity: 1;
 }
 
@@ -285,6 +285,13 @@
   content: "";
   position: absolute;
   inset: -6px;
+}
+
+/* Popover variant: enlarge the hit area so adjacent dots' areas overlap.
+   Dots are ~27px apart, so -14px horizontal makes hit areas 33px wide and
+   ensures continuous hover when sweeping along the chart line. */
+.dot-marker.popover::before {
+  inset: -12px -14px;
 }
 
 .dot-marker .dot-img {

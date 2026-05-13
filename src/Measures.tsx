@@ -12,7 +12,7 @@ type DotData = {
   date: string;
 };
 
-type LayerKind = "area" | "trend" | "main";
+type LayerKind = "area" | "target" | "main";
 
 type SvgLayer = {
   src: string;
@@ -218,11 +218,11 @@ export function Measures({ hoverStyle = "top-right" }: MeasuresProps) {
             },
             {
               src: "/assets/gad-line.svg",
-              kind: "trend",
+              kind: "target",
               left: -1,
               bottom: 12,
-              width: 216.5,
-              height: 35.99,
+              width: 218,
+              height: 18.5,
             },
             {
               src: "/assets/gad-line2.svg",
@@ -271,11 +271,11 @@ export function Measures({ hoverStyle = "top-right" }: MeasuresProps) {
             },
             {
               src: "/assets/phq-line.svg",
-              kind: "trend",
+              kind: "target",
               left: -1,
               bottom: 12,
-              width: 216.5,
-              height: 35.99,
+              width: 218,
+              height: 20.5,
             },
             {
               src: "/assets/phq-line2.svg",
