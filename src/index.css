@@ -83,3 +83,77 @@ button {
   padding: 40px 16px;
   flex-wrap: wrap;
 }
+
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 440px;
+}
+
+.direction-label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  color: var(--grey-700);
+}
+
+.toggle-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  color: var(--grey-800);
+  cursor: pointer;
+  user-select: none;
+  align-self: flex-start;
+}
+
+/* Hide the native checkbox, use a custom switch */
+.toggle-row input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle-switch {
+  display: inline-block;
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: 100px;
+  background: #c9ccd2;
+  transition: background 140ms ease;
+  flex-shrink: 0;
+}
+
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 100px;
+  background: #fff;
+  transition: transform 140ms ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-row input[type="checkbox"]:checked + .toggle-switch {
+  background: var(--sky-50);
+}
+
+.toggle-row input[type="checkbox"]:checked + .toggle-switch::before {
+  transform: translateX(16px);
+}
+
+.toggle-row input[type="checkbox"]:focus-visible + .toggle-switch {
+  outline: 2px solid var(--sky-50);
+  outline-offset: 2px;
+}

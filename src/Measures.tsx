@@ -43,6 +43,7 @@ type ChartRowProps = {
   dots: DotData[];
   currentPos: { left: number; bottom: number };
   hasTarget: boolean;
+  hasBase?: boolean;
   hoverStyle: HoverStyle;
   hoveredDotIdx: number | null;
   onDotEnter: (row: RowKey, idx: number, dot: DotData) => void;
@@ -50,6 +51,11 @@ type ChartRowProps = {
   onTargetEnter: (row: RowKey) => void;
   onTargetLeave: () => void;
 };
+
+// Position of the Base reference line within a chart row (chart is 74px tall).
+const BASE_LINE_BOTTOM = 60;
+const BASE_DOT_BOTTOM = 58;
+const BASE_VALUE = 18;
 
 function ChartRow(props: ChartRowProps) {
   const {
@@ -64,6 +70,7 @@ function ChartRow(props: ChartRowProps) {
     dots,
     currentPos,
     hasTarget,
+    hasBase,
     hoverStyle,
     hoveredDotIdx,
     rowKey,
@@ -158,6 +165,35 @@ function ChartRow(props: ChartRowProps) {
             Target
           </span>
         )}
+
+        {hasBase && (
+          <>
+            <div
+              className="base-line"
+              style={{ bottom: `${BASE_LINE_BOTTOM}px` }}
+            />
+            <img
+              className="base-end-dot"
+              src="/assets/gad-end-dot.svg"
+              alt=""
+              style={{ left: "213px", bottom: `${BASE_DOT_BOTTOM}px` }}
+            />
+            <span
+              className="base-label"
+              onMouseEnter={() =>
+                onDotEnter(rowKey, -1, {
+                  left: 213,
+                  bottom: BASE_DOT_BOTTOM,
+                  value: BASE_VALUE,
+                  date: "Base",
+                })
+              }
+              onMouseLeave={onDotLeave}
+            >
+              Base
+            </span>
+          </>
+        )}
       </div>
     </div>
   );
@@ -178,9 +214,13 @@ const POPOVER_HEIGHT = 38;
 
 type MeasuresProps = {
   hoverStyle?: HoverStyle;
+  showBase?: boolean;
 };
 
-export function Measures({ hoverStyle = "top-right" }: MeasuresProps) {
+export function Measures({
+  hoverStyle = "top-right",
+  showBase = false,
+}: MeasuresProps) {
   const [hoveredTarget, setHoveredTarget] = useState<RowKey | null>(null);
   const [hoveredDot, setHoveredDot] = useState<HoveredDot | null>(null);
 
@@ -246,6 +286,7 @@ export function Measures({ hoverStyle = "top-right" }: MeasuresProps) {
           ]}
           currentPos={{ left: 186, bottom: 6 }}
           hasTarget
+          hasBase={showBase}
           hoverStyle={hoverStyle}
           hoveredDotIdx={idxForRow("gad")}
           onDotEnter={handleDotEnter}
@@ -299,6 +340,7 @@ export function Measures({ hoverStyle = "top-right" }: MeasuresProps) {
           ]}
           currentPos={{ left: 186, bottom: 6 }}
           hasTarget
+          hasBase={showBase}
           hoverStyle={hoverStyle}
           hoveredDotIdx={idxForRow("phq")}
           onDotEnter={handleDotEnter}
