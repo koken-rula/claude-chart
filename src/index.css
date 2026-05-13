@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "Scto Grotesk A";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: local("Scto Grotesk A Regular"), local("Scto Grotesk A"),
+    local("SctoGroteskA-Regular");
+}
+
+@font-face {
+  font-family: "Scto Grotesk A";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: local("Scto Grotesk A Medium"), local("SctoGroteskA-Medium");
+}
+
+:root {
+  --grey-150: #ebedf0;
+  --grey-400: #969aa0;
+  --grey-500: #6a6c71;
+  --grey-700: #3f4146;
+  --grey-800: #26272a;
+  --grey-900: #15171a;
+  --grey-half: #56575b;
+
+  --sky-50: #296662;
+
+  --cream-100: #f8f5ef;
+
+  --amethyst-20: #e4e4f9;
+  --amethyst-40: #997eff;
+  --amethyst-50: #3e2e73;
+
+  --fern-20: #eaf5e4;
+  --fern-40: #7cbc7f;
+  --fern-50: #38663a;
+
+  --amber-20: #fbe6d8;
+  --amber-40: #f2976f;
+  --amber-50: #662714;
+
+  --neutral-white: #ffffff;
+  --graph-bg: #fcfbfa;
+
+  --font-sans: "Scto Grotesk A", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --shadow-medium: 0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--grey-900);
+  background: #f4f4f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 16px;
+  flex-wrap: wrap;
+}

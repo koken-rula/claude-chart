@@ -1,0 +1,472 @@
+.measures-card {
+  background: #fff;
+  border: 1px solid var(--grey-150);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 440px;
+  position: relative;
+  font-family: var(--font-sans);
+}
+
+.measures-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.measures-title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.54;
+  letter-spacing: -0.16px;
+  color: var(--grey-900);
+  margin: 0;
+}
+
+.measures-latest {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  color: var(--sky-50);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.progress-chart {
+  border: 1px solid var(--grey-150);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-row {
+  position: relative;
+  width: 400px;
+  height: 74px;
+  display: flex;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.chart-row + .chart-row {
+  border-top: 1px solid var(--grey-150);
+}
+
+.chart-row .data {
+  width: 134px;
+  height: 74px;
+  background: #fff;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.chart-row .data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  color: var(--grey-800);
+}
+
+.chart-row .name {
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.chart-row .score {
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.chart-row .score-current {
+  font-weight: 500;
+}
+
+.chart-row .score-total {
+  color: var(--grey-half);
+}
+
+.mic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 100px;
+  background: var(--cream-100);
+  align-self: flex-start;
+  width: max-content;
+}
+
+.mic-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 100px;
+  background: var(--amethyst-40);
+}
+
+.mic-badge.fern .dot {
+  background: var(--fern-40);
+}
+
+.mic-badge.amber .dot {
+  background: var(--amber-40);
+}
+
+.mic-badge .label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: var(--grey-700);
+}
+
+.graph {
+  position: relative;
+  width: 266px;
+  height: 74px;
+  background: var(--graph-bg);
+  border-left: 1px solid var(--grey-150);
+}
+
+.graph .svg-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.graph img {
+  display: block;
+  pointer-events: none;
+}
+
+.graph .layer {
+  position: absolute;
+}
+
+/* The gray "target trend" reference line. The SVG is already a neutral
+   gray (#6A6C71 / #C1C5CD). Render lighter by default; darken on Target hover.
+   The colored main line (`.layer-main`) is untouched on hover. */
+.graph .layer-trend {
+  opacity: 0.5;
+  transition: opacity 140ms ease;
+}
+
+.graph:has(.target:hover) .layer-trend {
+  opacity: 1;
+}
+
+.graph .end-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+}
+
+.graph .target {
+  position: absolute;
+  bottom: 7px;
+  right: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: var(--grey-400);
+  text-align: center;
+  cursor: help;
+  padding: 2px 0;
+  border-radius: 4px;
+  transition: color 120ms ease;
+  z-index: 6;
+}
+
+.graph .target:hover {
+  color: var(--grey-800);
+}
+
+.score-pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.score-pill.baseline {
+  z-index: 5;
+  cursor: pointer;
+}
+
+.graph .date-label {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: var(--grey-500);
+  z-index: 7;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.score-pill.amethyst {
+  background: var(--amethyst-50);
+}
+.score-pill.amethyst.baseline {
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.4) 100%
+    ),
+    linear-gradient(90deg, rgb(62, 46, 115) 0%, rgb(62, 46, 115) 100%);
+}
+
+.score-pill.fern {
+  background: var(--fern-50);
+}
+.score-pill.fern.baseline {
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.4) 100%
+    ),
+    linear-gradient(90deg, rgb(56, 102, 58) 0%, rgb(56, 102, 58) 100%);
+}
+
+.score-pill.amber {
+  background: var(--amber-50);
+}
+.score-pill.amber.baseline {
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.4) 100%
+    ),
+    linear-gradient(90deg, rgb(102, 39, 20) 0%, rgb(102, 39, 20) 100%);
+}
+
+/* Dot marker: hovering swaps the dot for a score pill */
+.dot-marker {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.dot-marker::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.dot-marker .dot-img {
+  position: absolute;
+  inset: 0;
+  width: 5px;
+  height: 5px;
+  display: block;
+  transition: opacity 120ms ease;
+}
+
+.dot-marker .dot-pill {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.dot-marker.amethyst .dot-pill {
+  background: var(--amethyst-50);
+}
+.dot-marker.fern .dot-pill {
+  background: var(--fern-50);
+}
+.dot-marker.amber .dot-pill {
+  background: var(--amber-50);
+}
+
+.dot-marker.top-right:hover .dot-img {
+  opacity: 0;
+}
+.dot-marker.top-right:hover .dot-pill {
+  opacity: 1;
+}
+
+/* Popover variant: dot stays visible, a floating tooltip with date + score
+   appears above the hovered dot. */
+.dot-popover {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--neutral-white);
+  border: 1px solid var(--grey-150);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: var(--shadow-medium);
+  min-width: 43px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 8;
+  font-family: var(--font-sans);
+}
+
+.dot-popover-date {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: var(--grey-400);
+}
+
+.dot-popover-value {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: var(--grey-800);
+}
+
+/* Kaiser NCAL row */
+.kaiser-row {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--grey-150);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.kaiser-row:hover {
+  background: #fafafa;
+  border-color: #d9dbdf;
+}
+
+.kaiser-row .name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  color: var(--grey-900);
+}
+
+.kaiser-row .pill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 100px;
+  background: var(--fern-20);
+  color: var(--fern-50);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+}
+
+.kaiser-row .chevron {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey-700);
+}
+
+.kaiser-row .chevron img {
+  width: 14px;
+  height: 6px;
+  display: block;
+}
+
+/* Tooltip for Target hover (rendered at card level, below Target) */
+.target-tooltip {
+  position: absolute;
+  left: 108px;
+  width: 308px;
+  background: var(--neutral-white);
+  border: 1px solid var(--grey-150);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: var(--shadow-medium);
+  z-index: 20;
+}
+
+.target-tooltip .title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.54;
+  letter-spacing: -0.16px;
+  color: var(--grey-800);
+  margin: 0 0 8px 0;
+}
+
+.target-tooltip .description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.54;
+  letter-spacing: -0.16px;
+  color: var(--grey-800);
+  margin: 0 0 8px 0;
+}
+
+.target-tooltip .link {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.54;
+  letter-spacing: -0.16px;
+  color: var(--sky-50);
+  text-decoration: underline;
+  cursor: pointer;
+}
